@@ -28,10 +28,11 @@ public class Shipment {
     @NotBlank
     private String typeOfCargo;
 
+    private int status;
 
+    @Column(columnDefinition = "integer default 0")
     private float weight;
 
-    @Temporal(TemporalType.DATE)
     @LastModifiedDate
     private Date creationDate;
 }
