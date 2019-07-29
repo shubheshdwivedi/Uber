@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="uber" target="12" />
+      <module name="uber" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
