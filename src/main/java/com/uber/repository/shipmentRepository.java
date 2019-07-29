@@ -15,9 +15,9 @@ import java.util.List;
 public interface shipmentRepository extends JpaRepository<Shipment, Long> {
 
     @RestResource(path = "findBySource", rel = "findBySource")
-    public List<Shipment> findBySourceStartsWith(@Param("source") String source);
+    public List<Shipment> findBySourceStartsWith(@Param("Source") String source);
 
     @RestResource(path = "getShipmentsByStatus", rel = "getShipmentsByStatus")
-    public List<Shipment> findShipmentsByStatus(@Param("status") int status);
+    public List<Shipment> findShipmentsByStatus(@Param("Status") int status);
 
 }
