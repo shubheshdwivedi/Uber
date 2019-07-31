@@ -1,12 +1,14 @@
 package com.uber.model;
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.NaturalId;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +17,7 @@ import java.util.Set;
 @Data
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@DynamicInsert
 public class User {
 
     @Id
@@ -39,11 +42,18 @@ public class User {
     @Size(max = 100)
     private String password;
 
+    //    @NotNull
+    @Column(columnDefinition = "varchar(255) default 'http://conferenceoeh.com/wp-content/uploads/profile-pic-dummy.png'")
+    private String url;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+    @OneToOne(mappedBy = "user")
+    private Reviews reviews;
 
     public User() {
 
@@ -101,5 +111,12 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

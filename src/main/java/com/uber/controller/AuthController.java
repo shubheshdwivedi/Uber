@@ -48,7 +48,7 @@ public class AuthController {
     @Autowired
     JwtTokenProvider tokenProvider;
 
-    private RoleName rolesArr[] = {RoleName.CUSTOMER, RoleName.SERVICE_PROVIDER};
+    private RoleName[] rolesArr = {RoleName.CUSTOMER, RoleName.SERVICE_PROVIDER};
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -60,7 +60,6 @@ public class AuthController {
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         String jwt = tokenProvider.generateToken(authentication);
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
     }
