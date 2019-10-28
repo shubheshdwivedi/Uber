@@ -1,6 +1,7 @@
 package com.uber.repository;
 
 import com.uber.model.Shipment;
+import com.uber.model.Vehicles;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
@@ -11,13 +12,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-@RepositoryRestResource(collectionResourceRel = "shipment", path = "shipment")
-public interface shipmentRepository extends JpaRepository<Shipment, Long> {
-
-    @RestResource(path = "findBySource", rel = "findBySource")
-    public List<Shipment> findBySourceStartsWith(@Param("Source") String source);
-
-    @RestResource(path = "getShipmentsByStatus", rel = "getShipmentsByStatus")
-    public List<Shipment> findShipmentsByStatus(@Param("Status") int status);
+@RepositoryRestResource(collectionResourceRel = "vehicles", path = "vehicles")
+public interface vehiclesRepository extends JpaRepository<Vehicles, Long> {
 
 }
